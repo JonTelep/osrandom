@@ -8,6 +8,6 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'runescape_uf';
+    src :local('runescape_uf'), url(./fonts/runescape_uf.ttf) format('truetype');
 }
