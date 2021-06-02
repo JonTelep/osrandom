@@ -1,4 +1,4 @@
-# OSRandom
+# OSRng
 
 Is a simple Randomizer website for OSRS content. PVM, PVP, Skilling, Minigames
 
