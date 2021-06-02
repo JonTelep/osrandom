@@ -270,29 +270,98 @@ const bosses = [
 
 
 const skills = [
-  'Agility',
-  'Attack',
-  'Strength',
-  'Defence',
-  'Ranged',
-  'Prayer',
-  'Magic',
-  'Runecraft',
-  'Hitpoints',
-  'Crafting',
-  'Mining',
-  'Smithing',
-  'Fishing',
-  'Cooking',
-  'Firemaking',
-  'Wooducutting',
-  'Herblore',
-  'Thieving',
-  'Fletching',
-  'Slayer',
-  'Farming',
-  'Construction',
-  'Hunter'
+  {
+    name: 'Agility',
+    isCombat: false,
+  },
+  {
+    name: 'Attack',
+    iCombat: true,
+  },
+  {
+    name: 'Strength',
+    isCombat: true,
+  },
+  {
+    name: 'Defence',
+    isCombat: true,
+  },
+  {
+    name: 'Ranged',
+    isCombat: true,
+  },
+  {
+    name: 'Prayer',
+    isCombat: false,
+  },
+  {
+    name: 'Magic',
+    isCombat: true
+  },
+  {
+    name: 'Runecraft',
+    isCombat: false,
+  },
+  {
+    name: 'Hitpoints',
+    isCombat: true,
+  },
+  {
+    name: 'Crafting',
+    isCombat: false,
+  },
+  {
+    name: 'Mining',
+    isCombat: false,
+  },
+  {
+    name: 'Smithing',
+    isCombat: false,
+  },
+  {
+    name: 'Fishing',
+    isCombat: false,
+  },
+  {
+    name: 'Cooking',
+    isCombat: false,
+  },
+  {
+    name: 'Firemaking',
+    isCombat: false,
+  },
+  {
+    name: 'Wooducutting',
+    isCombat: false,
+  },
+  {
+    name: 'Herblore',
+    isCombat: false,
+  },
+  {
+    name: 'Thieving',
+    isCombat: false,
+  },
+  {
+    name: 'Fletching',
+    isCombat: false,
+  },
+  {
+    name: 'Slayer',
+    isCombat: true,
+  },
+  {
+    name: 'Farming',
+    isCombat: false,
+  },
+  {
+    name: 'Construction',
+    isCombat: false,
+  },
+  {
+    name: 'Hunter',
+    isCombat: false,
+  }
 ];
 
 
@@ -300,6 +369,7 @@ const skills = [
 function App() {
   //GLOBAL
   const [bossesSelected, setBossesSelected] = useState(false);
+  const [skillSelected, setSkillSelected] = useState(false);
 
   //BOSSES
   const [bossName, setBossName] = useState('');
@@ -312,30 +382,43 @@ function App() {
 
 
   //SKILLS
-  const [randomSkill, setRandomSkill] = useState('');
+  const [skillName, setSkillName] = useState('');
 
 
-const getRandomNumber = (max) => {
-  return Math.floor(Math.random() * max);
-}
+  //Governing the Randomness
+  const getRandomNumber = (max) => {
+    return Math.floor(Math.random() * max);
+  }
 
 
-const SelectRandomBoss = () => {
-  setBossesSelected(true);
-  const randomNum = getRandomNumber(bosses.length);
-  setBossName(bosses[randomNum].name);
-  setBossIsGWD(bosses[randomNum].isGWD);
-  setBossIsWildy(bosses[randomNum].isWILDY);
-  setBossIsMulti(bosses[randomNum].isMulti);
-  setBossIsRaids(bosses[randomNum].isRaids);
-  setBossYoutube(bosses[randomNum].youtube);
-  setBossWiki(bosses[randomNum].osrswiki);
-}
+  const SelectRandomBoss = () => {
+    setBossesSelected(true);
+    const randomNum = getRandomNumber(bosses.length);
+    setBossName(bosses[randomNum].name);
+    setBossIsGWD(bosses[randomNum].isGWD);
+    setBossIsWildy(bosses[randomNum].isWILDY);
+    setBossIsMulti(bosses[randomNum].isMulti);
+    setBossIsRaids(bosses[randomNum].isRaids);
+    setBossYoutube(bosses[randomNum].youtube);
+    setBossWiki(bosses[randomNum].osrswiki);
+  }
 
-const SelectRandomSkill = () => {
-  const randomNum = getRandomNumber(skills.length);
-  setRandomSkill(skills[randomNum]);
-}
+  const SelectRandomSkill = () => {
+    setSkillSelected(true);
+    const randomNum = getRandomNumber(skills.length);
+    setSkillName(skills[randomNum].name);
+  }
+
+  const ClearAllSelections = () => {
+    setBossesSelected(false);
+    setSkillSelected(false);
+  }
+  const ClearBossSelection = () => {
+    setBossesSelected(false);
+  }
+  const ClearSkillSelection = () => {
+    setSkillSelected(false);
+  }
 
   return (
 
@@ -343,6 +426,7 @@ const SelectRandomSkill = () => {
         <header className="App-header">
           <div className="ui vertical segment">
             <button className="ui secondary button" onClick={SelectRandomBoss}>Pick your random boss</button>
+            {bossesSelected ? <button className="ui secondary button" onClick={ClearBossSelection}>Clear</button> : ''  }
             {bossesSelected ?
             <div className="ui piled segments"> 
                 <div className="ui inverted segment">
@@ -367,14 +451,23 @@ const SelectRandomSkill = () => {
                   <a href={bossYoutube}>A youtube video of a guide</a>
                 </div>
             </div> : ''
-          }
+            }
           </div>
-          {/*
-          <div>
+          <div className="ui vertical segment">
             <button className="ui secondary button" onClick={SelectRandomSkill}>Pick your random skill</button>
-            The skill you should train is you are doing is: {randomSkill}
+            {skillSelected ? <button className="ui secondary button" onClick={ClearSkillSelection}>Clear</button> : ''}
+            {skillSelected ?
+              <div className="ui piled segments"> 
+                <div className="ui inverted segment">
+                  <h2>{skillName}</h2>
+                </div>
+              </div>
+              : ''
+            }
           </div>
-           <Donation/> */}
+          <div className="ui vertical segment">
+          {skillSelected || bossesSelected ? <button className="ui secondary button" onClick={ClearAllSelections}>Clear All</button> : ''}
+          </div>
         </header>
       </div>
 
