@@ -370,6 +370,7 @@ function App() {
   //GLOBAL
   const [bossesSelected, setBossesSelected] = useState(false);
   const [skillSelected, setSkillSelected] = useState(false);
+  const [donationSelected, setDonationSelected] = useState(false);
 
   //BOSSES
   const [bossName, setBossName] = useState('');
@@ -409,6 +410,10 @@ function App() {
     setSkillName(skills[randomNum].name);
   }
 
+  const SelectDonation = () => {
+    setDonationSelected(true);
+  }
+
   const ClearAllSelections = () => {
     setBossesSelected(false);
     setSkillSelected(false);
@@ -418,6 +423,9 @@ function App() {
   }
   const ClearSkillSelection = () => {
     setSkillSelected(false);
+  }
+  const ClearDonation = () => {
+    setDonationSelected(false);
   }
 
   return (
@@ -466,11 +474,26 @@ function App() {
             }
           </div>
           <div className="ui vertical segment">
-          {skillSelected || bossesSelected ? <button className="ui secondary button" onClick={ClearAllSelections}>Clear All</button> : ''}
-          </div>
-        </header>
-      </div>
+            {skillSelected || bossesSelected || donationSelected ? <button className="ui secondary button" onClick={ClearAllSelections}>Clear All</button> : ''}
+          </div>        
 
+          <div className="ui vertical segment">
+              {!donationSelected ? <button className="ui secondary button" onClick={SelectDonation}>Support Me!</button> : ''}
+              
+              {donationSelected ?
+                <div className="ui piled segments"> 
+                
+                  <div className="ui inverted segment">
+                    <Donation />
+                    {donationSelected ? <button className="ui secondary button" onClick={ClearDonation}>Clear</button> : ''}
+                  </div>
+                </div>
+                : ''
+              }
+             
+            </div>
+          </header>
+      </div>
   );
 }
 
