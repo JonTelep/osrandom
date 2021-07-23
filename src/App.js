@@ -2,7 +2,8 @@ import './App.css';
 import React, { useState } from 'react';
 
 import Donation from './components/donation';
-
+import Filler from './components/filler';
+import Future from './components/future';
 
 const bosses = [
   {
@@ -265,6 +266,15 @@ const bosses = [
     isRaids: false,
     youtube: 'https://youtu.be/tihXu1-KYVk',
     osrswiki: 'https://oldschool.runescape.wiki/w/The_Nightmare/Strategies'
+  },
+  {
+    name: 'Phosani\'s Nightmare',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: false,
+    youtube: 'https://youtu.be/pEMxp1PA93A',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Phosani%27s_Nightmare'
   }
 ]
 
@@ -371,6 +381,7 @@ function App() {
   const [bossesSelected, setBossesSelected] = useState(false);
   const [skillSelected, setSkillSelected] = useState(false);
   const [donationSelected, setDonationSelected] = useState(false);
+  const [futureSelected, setFutureSelected] = useState(false);
 
   //BOSSES
   const [bossName, setBossName] = useState('');
@@ -414,6 +425,10 @@ function App() {
     setDonationSelected(true);
   }
 
+  const SelectFuture = () => {
+    setFutureSelected(true);
+  }
+
   const ClearAllSelections = () => {
     setBossesSelected(false);
     setSkillSelected(false);
@@ -424,12 +439,12 @@ function App() {
   const ClearSkillSelection = () => {
     setSkillSelected(false);
   }
-  const ClearDonation = () => {
+  const ClearDonationFuture = () => {
     setDonationSelected(false);
+    setFutureSelected(false);
   }
 
   return (
-
       <div className="App">
         <header className="App-header">
           <div className="ui vertical segment">
@@ -459,6 +474,7 @@ function App() {
                   <a href={bossYoutube}>A youtube video of a guide</a>
                 </div>
             </div> : ''
+
             }
           </div>
           <div className="ui vertical segment">
@@ -471,26 +487,30 @@ function App() {
                 </div>
               </div>
               : ''
-            }
+            }                    
+            <Filler />
+            <Filler />
+            <Filler />
+            <Filler />
+            <Filler />
           </div>
           <div className="ui vertical segment">
-            {skillSelected || bossesSelected || donationSelected ? <button className="ui secondary button" onClick={ClearAllSelections}>Clear All</button> : ''}
+             {bossesSelected || skillSelected ?<button className="ui secondary button" onClick={ClearAllSelections}>Clear All</button>: '' }
           </div>        
 
           <div className="ui vertical segment">
               {!donationSelected ? <button className="ui secondary button" onClick={SelectDonation}>Support Me!</button> : ''}
-              
               {donationSelected ?
                 <div className="ui piled segments"> 
-                
                   <div className="ui inverted segment">
                     <Donation />
-                    {donationSelected ? <button className="ui secondary button" onClick={ClearDonation}>Clear</button> : ''}
+                    {futureSelected ? <Future />: ''}
+                    {!futureSelected ? <button className="ui secondary button" onClick={SelectFuture}>Site's Future</button> : ''}
+                    {donationSelected || futureSelected ? <button className="ui secondary button" onClick={ClearDonationFuture}>Clear</button> : ''}
                   </div>
                 </div>
                 : ''
               }
-             
             </div>
           </header>
       </div>
