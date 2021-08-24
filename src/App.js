@@ -341,7 +341,7 @@ const skills = [
     isCombat: false,
   },
   {
-    name: 'Wooducutting',
+    name: 'Woodcutting',
     isCombat: false,
   },
   {
@@ -474,7 +474,6 @@ function App() {
                   <a href={bossYoutube}>A youtube video of a guide</a>
                 </div>
             </div> : ''
-
             }
           </div>
           <div className="ui vertical segment">
@@ -499,7 +498,32 @@ function App() {
           </div>        
 
           <div className="ui vertical segment">
-              {!donationSelected ? <button className="ui secondary button" onClick={SelectDonation}>Support Me!</button> : ''}
+              {!futureSelected ? <button className="ui secondary button" onClick={SelectFuture}>This site's future</button> : ''}
+              {futureSelected ?
+                <div className="ui piled segments"> 
+                  <div className="ui inverted segment">
+                  <Future />
+                  <Filler />
+                  <Filler />
+                    {donationSelected ? <Donation />: ''}
+                    {!donationSelected ? <button className="ui secondary button" onClick={SelectDonation}>Support the site</button> : ''}
+                    
+                  </div>
+                </div>
+                : ''
+              }
+              {donationSelected || futureSelected ? <button className="ui secondary button" onClick={ClearDonationFuture}>Clear</button> : ''}
+            </div>
+          </header>
+      </div>
+  );
+}
+
+export default App;
+
+/*
+
+              {!donationSelected ? <button className="ui secondary button" onClick={SelectDonation}>This Site's Future</button> : ''}
               {donationSelected ?
                 <div className="ui piled segments"> 
                   <div className="ui inverted segment">
@@ -511,10 +535,6 @@ function App() {
                 </div>
                 : ''
               }
-            </div>
-          </header>
-      </div>
-  );
-}
 
-export default App;
+
+*/

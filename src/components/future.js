@@ -3,7 +3,6 @@ import React from 'react';
 const Future = () => {
     return(
         <div>
-            <br />
                 <div className="ui list">
                     <div className="item">
                         <h2>Styling</h2>    
