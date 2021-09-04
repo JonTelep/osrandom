@@ -382,6 +382,7 @@ function App() {
   const [skillSelected, setSkillSelected] = useState(false);
   const [donationSelected, setDonationSelected] = useState(false);
   const [futureSelected, setFutureSelected] = useState(false);
+  const [otherProjectsSelected, setOtherProjectsSelected] = useState(false);
 
   //BOSSES
   const [bossName, setBossName] = useState('');
@@ -429,9 +430,15 @@ function App() {
     setFutureSelected(true);
   }
 
+  const SelectOtherProjects = () => {
+    setOtherProjectsSelected(true);
+  }
+
+
   const ClearAllSelections = () => {
     setBossesSelected(false);
     setSkillSelected(false);
+    setOtherProjectsSelected(false);
   }
   const ClearBossSelection = () => {
     setBossesSelected(false);
@@ -442,6 +449,7 @@ function App() {
   const ClearDonationFuture = () => {
     setDonationSelected(false);
     setFutureSelected(false);
+    setOtherProjectsSelected(false);
   }
 
   return (
@@ -512,7 +520,22 @@ function App() {
                 </div>
                 : ''
               }
-              {donationSelected || futureSelected ? <button className="ui secondary button" onClick={ClearDonationFuture}>Clear</button> : ''}
+            </div>
+
+            <div className="ui vertical segment">
+              {!otherProjectsSelected ? <button className="ui secondary button" onClick={SelectOtherProjects}>Other OSRS Projects</button> : ''}
+              {otherProjectsSelected ?
+                  <div className="ui piled segments"> 
+                    <div className="ui inverted segment">
+                      <h1>Other OSRS Projects</h1>
+                      <p>NOTE - I have no affiliation with any of these, other than knowing about it.</p>
+                      <a href="https://opensea.io/collection/osrs-punks">1. OSRS Punks</a>
+                      <p>I enjoy the crypto world, and NFT's are a big part of it. A content creator named 'Tedious' is behind OSRS Punks. (I don't own any YET!)</p>
+                    </div>
+                  </div>
+                  : ''
+                }
+                {donationSelected || futureSelected || otherProjectsSelected ? <button className="ui secondary button" onClick={ClearDonationFuture}>Clear</button> : ''}
             </div>
           </header>
       </div>
