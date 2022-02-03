@@ -537,10 +537,14 @@ function App() {
                   <div className="ui piled segments"> 
                     <div className="ui inverted segment">
                       <h1>Other OSRS Projects</h1>
-                      <p>NOTE - I have no affiliation with any of these, other than knowing about it.</p>
+                      <p>NOTE - I have no affiliation with any of these, but enjoy reading about them.</p>
                       <a href="https://opensea.io/collection/osrs-punks">1. OSRS Punks</a>
                       <p>I enjoy the crypto world, and NFT's are a big part of it. A content creator named 'Tedious' is behind OSRS Punks. (I don't own any YET!)</p>
+                      <a href="https://www.osrsbotdetector.com/#/">2. OSRS Bot-Detector</a>
+                      <p>Open source machine learning algorithm detecting and predicting players you pass. Does hell of a lot more bot busting then Yagex imo.</p>
                     </div>
+
+    
                   </div>
                   : ''
                 }
