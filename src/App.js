@@ -275,6 +275,15 @@ const bosses = [
     isRaids: false,
     youtube: 'https://youtu.be/pEMxp1PA93A',
     osrswiki: 'https://oldschool.runescape.wiki/w/Phosani%27s_Nightmare'
+  },
+  {
+    name: 'Nex',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: true,
+    isRaids: false,
+    youtube: 'https://youtu.be/6f_eFLBft-s',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Nex'
   }
 ]
 
