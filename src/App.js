@@ -542,9 +542,9 @@ function App() {
                       <p>I enjoy the crypto world, and NFT's are a big part of it. A content creator named 'Tedious' is behind OSRS Punks. (I don't own any YET!)</p>
                       <a href="https://www.osrsbotdetector.com/#/">2. OSRS Bot-Detector</a>
                       <p>Open source machine learning algorithm detecting and predicting players you pass. Does hell of a lot more bot busting then Yagex imo.</p>
+                      <a href="https://www.patreon.com/m/3596305/posts">3. LilSmokey</a>
+                      <p>Unreal video editing and OSRS meme creator. Smokey's collabed with content creators and have made some top class editing!</p>
                     </div>
-
-    
                   </div>
                   : ''
                 }
