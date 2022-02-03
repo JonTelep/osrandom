@@ -6,7 +6,7 @@ const Future = () => {
                 <div className="ui list">
                     <div className="item">
                         <h2>Styling</h2>    
-                        Fix some styling issues
+                        Fix all the styling and responiveness. I'm no frontend dev.
                      </div>
                      <div className="item">
                         <h2>Bosses</h2>    
@@ -14,7 +14,7 @@ const Future = () => {
                      </div>
                      <div className="item">
                         <h2>Skills</h2>    
-                        Filter capabilites on combats, 
+                        Filter skills on skilling, combat, f2p, p2p
                      </div>
                      <div className="item">
                         <h2>Filtering on your account</h2>    
