@@ -284,6 +284,33 @@ const bosses = [
     isRaids: false,
     youtube: 'https://youtu.be/6f_eFLBft-s',
     osrswiki: 'https://oldschool.runescape.wiki/w/Nex'
+  },
+  {
+    name: 'Tombs of Amascut (Entry Mode)',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: true,
+    youtube: 'https://youtu.be/RkqAFedFpYw',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Tombs_of_Amascut'
+  },
+  {
+    name: 'Tombs of Amascut (Normal Mode)',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: true,
+    youtube: 'https://youtu.be/Lf_xslLv744',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Tombs_of_Amascut'
+  },
+  {
+    name: 'Tombs of Amascut (Expert Mode)',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: true,
+    youtube: 'https://youtu.be/eS6PsclMwKo',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Tombs_of_Amascut'
   }
 ]
 
