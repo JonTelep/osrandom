@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Donation from './components/donation';
 import Filler from './components/filler';
 import Future from './components/future';
-
+// Add new flag to all bosses called isMinigame and default to false
 const bosses = [
   {
     name: 'Kree\'arra',
@@ -12,6 +12,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/Xvbmz3Itfx8',
     osrswiki: 'https://oldschool.runescape.wiki/w/Kree%27arra/Strategies'
   },
@@ -21,6 +22,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/JK3_IDlQzUI',
     osrswiki: 'https://oldschool.runescape.wiki/w/General_Graardor/Strategies'
   },
@@ -30,6 +32,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/bIVvp50wrNA',
     osrswiki: 'https://oldschool.runescape.wiki/w/K%27ril_Tsutsaroth/Strategies'
   },
@@ -39,6 +42,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/jWaIYzH5raE',
     osrswiki: 'https://oldschool.runescape.wiki/w/Commander_Zilyana/Strategies'
   },
@@ -48,6 +52,7 @@ const bosses = [
     isWILDY: true,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/M3HB0g1vJsY',
     osrswiki: 'https://oldschool.runescape.wiki/w/Callisto/Strategies'
   },
@@ -57,6 +62,7 @@ const bosses = [
     isWILDY: true,
     isMulti: false,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/OZLUJA_y7hw',
     osrswiki: 'https://oldschool.runescape.wiki/w/Chaos_Elemental/Strategies'
   },
@@ -66,6 +72,7 @@ const bosses = [
     isWILDY: true,
     isMulti: false,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/lujbZUGMz7g',
     osrswiki: 'https://oldschool.runescape.wiki/w/Crazy_archaeologist/Strategies'
   },
@@ -75,6 +82,7 @@ const bosses = [
     isWILDY: true,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/UVH7j_5xP6g',
     osrswiki: 'https://oldschool.runescape.wiki/w/King_Black_Dragon/Strategies'
   },
@@ -84,6 +92,7 @@ const bosses = [
     isWILDY: true,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/mMS20r5xEyE',
     osrswiki: 'https://oldschool.runescape.wiki/w/Scorpia/Strategies'
   },
@@ -93,6 +102,7 @@ const bosses = [
     isWILDY: true,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/KvlkjdOB4tg',
     osrswiki: 'https://oldschool.runescape.wiki/w/Venenatis/Strategies'
   },
@@ -102,6 +112,7 @@ const bosses = [
     isWILDY: true,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/2yXc9bKdvOE',
     osrswiki: 'https://oldschool.runescape.wiki/w/Vet%27ion/Strategies'
   },
@@ -111,6 +122,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/4VXoE6-5cA4',
     osrswiki: 'https://oldschool.runescape.wiki/w/Obor'
   },
@@ -120,6 +132,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/BgbFVxap1Ec',
     osrswiki: 'https://oldschool.runescape.wiki/w/Bryophyta'
   },
@@ -129,8 +142,19 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: false,
+    isMinigame: true,
     youtube: 'https://youtu.be/R4Ws-xxOS-A',
     osrswiki: 'https://oldschool.runescape.wiki/w/Tempoross/Strategies'
+  },
+  {
+    name: 'Guardians of the Rift',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: false,
+    isMinigame: true,
+    youtube: 'https://youtu.be/IH57v4PqsUM',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Guardians_of_the_Rift'
   },
   {
     name: 'Wintertodt',
@@ -138,6 +162,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: false,
+    isMinigame: true,
     youtube: 'https://youtu.be/5mOXlO0DzU8',
     osrswiki: 'https://oldschool.runescape.wiki/w/Wintertodt/Strategies'
   },
@@ -147,6 +172,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: false,
+    isMinigame: true,
     youtube: 'https://youtu.be/aP56mYJB_EY',
     osrswiki: 'https://oldschool.runescape.wiki/w/Zalcano/Strategies'
   },
@@ -156,6 +182,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: true,
+    isMinigame: false,
     youtube: 'https://youtu.be/wlmYhW6qmmw',
     osrswiki: 'https://oldschool.runescape.wiki/w/Chambers_of_Xeric/Strategies'
   },
@@ -165,6 +192,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: true,
+    isMinigame: false,
     youtube: 'https://youtu.be/wlmYhW6qmmw',
     osrswiki: 'https://oldschool.runescape.wiki/w/Chambers_of_Xeric/Strategies'
   },
@@ -174,6 +202,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: true,
+    isMinigame: false,
     youtube: 'https://youtu.be/7hzX4552lso',
     osrswiki: 'https://oldschool.runescape.wiki/w/Theatre_of_Blood/Strategies'
   },
@@ -183,6 +212,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: true,
+    isMinigame: false,
     youtube: 'https://youtu.be/7hzX4552lso',
     osrswiki: 'https://oldschool.runescape.wiki/w/Theatre_of_Blood/Strategies'
   },
@@ -192,6 +222,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/Tl1aNgoO2hs',
     osrswiki: 'https://oldschool.runescape.wiki/w/Giant_Mole/Strategies'
   },
@@ -201,6 +232,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/yG0h2bKOzuY',
     osrswiki: 'https://oldschool.runescape.wiki/w/Deranged_archaeologist/Strategies'
   },
@@ -210,6 +242,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/pfjvjt95Fow',
     osrswiki: 'https://oldschool.runescape.wiki/w/Dagannoth_Kings/Strategies'
   },
@@ -219,6 +252,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/Ce_jV9iJNiE',
     osrswiki: 'https://oldschool.runescape.wiki/w/Sarachnis/Strategies'
   },
@@ -228,6 +262,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/qmFvRtJkKHk',
     osrswiki: 'https://oldschool.runescape.wiki/w/Kalphite_Queen/Strategies'
   },
@@ -237,6 +272,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/CZFzB71k6wU',
     osrswiki: 'https://oldschool.runescape.wiki/w/Zulrah/Strategies'
   },
@@ -246,6 +282,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/d6kR7eBSw1k',
     osrswiki: 'https://oldschool.runescape.wiki/w/Vorkath/Strategies'
   },
@@ -255,6 +292,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/3ZNGpC90zEI',
     osrswiki: 'https://oldschool.runescape.wiki/w/Corporeal_Beast/Strategies'
   },
@@ -264,6 +302,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/tihXu1-KYVk',
     osrswiki: 'https://oldschool.runescape.wiki/w/The_Nightmare/Strategies'
   },
@@ -273,6 +312,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/pEMxp1PA93A',
     osrswiki: 'https://oldschool.runescape.wiki/w/Phosani%27s_Nightmare'
   },
@@ -282,6 +322,7 @@ const bosses = [
     isWILDY: false,
     isMulti: true,
     isRaids: false,
+    isMinigame: false,
     youtube: 'https://youtu.be/6f_eFLBft-s',
     osrswiki: 'https://oldschool.runescape.wiki/w/Nex'
   },
@@ -291,6 +332,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: true,
+    isMinigame: false,
     youtube: 'https://youtu.be/RkqAFedFpYw',
     osrswiki: 'https://oldschool.runescape.wiki/w/Tombs_of_Amascut'
   },
@@ -300,6 +342,7 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: true,
+    isMinigame: false,
     youtube: 'https://youtu.be/Lf_xslLv744',
     osrswiki: 'https://oldschool.runescape.wiki/w/Tombs_of_Amascut'
   },
@@ -309,8 +352,89 @@ const bosses = [
     isWILDY: false,
     isMulti: false,
     isRaids: true,
+    isMinigame: false,
     youtube: 'https://youtu.be/eS6PsclMwKo',
     osrswiki: 'https://oldschool.runescape.wiki/w/Tombs_of_Amascut'
+  },
+  {
+    name: 'Calvar\'ion',
+    isGWD: false,
+    isWILDY: true,
+    isMulti: false,
+    isRaids: false,
+    isMinigame: false,
+    youtube: 'https://youtu.be/ZeCtopOim9I',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Calvar%27ion'
+  },
+  {
+    name: 'Spindel',
+    isGWD: false,
+    isWILDY: true,
+    isMulti: false,
+    isRaids: false,
+    isMinigame: false,
+    youtube: 'https://youtu.be/Esi8nSgmZZ8',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Spindel'
+  },
+  {
+    name: 'Artio',
+    isGWD: false,
+    isWILDY: true,
+    isMulti: false,
+    isRaids: false,
+    isMinigame: false,
+    youtube: 'https://youtu.be/1kifybH4PWg',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Artio'
+  },
+  {
+    name: 'Phantom Muspah',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: false,
+    isMinigame: false,
+    youtube: 'https://youtu.be/FybdiHaqOh4',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Phantom_Muspah'
+  },
+  {
+    name: 'TzKal-Zuk',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: false,
+    isMinigame: true,
+    youtube: 'https://youtu.be/uaoSaUT4SZc',
+    osrswiki: 'https://oldschool.runescape.wiki/w/TzKal-Zuk'
+  },
+  {
+    name: 'TzTok-Jad',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: false,
+    isMinigame: true,
+    youtube: 'https://youtu.be/NzADS_aFTZ8',
+    osrswiki: 'https://oldschool.runescape.wiki/w/TzTok-Jad'
+  },
+  {
+    name: 'Crystalline Hunllef',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: false,
+    isMinigame: true,
+    youtube: 'https://youtu.be/CDuv_0XmGEY',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Crystalline_Hunllef'
+  },
+  {
+    name: 'Corrupted Hunllef',
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: false,
+    isMinigame: true,
+    youtube: 'https://youtu.be/5i7uQ5SevSw',
+    osrswiki: 'https://oldschool.runescape.wiki/w/Corrupted_Hunllef'
   }
 ]
 
