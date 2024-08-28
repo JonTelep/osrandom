@@ -1,0 +1,82 @@
+.donation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.donation-title {
+    color: #ffd700;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.donation-intro {
+    text-align: center;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+}
+
+.donation-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.donation-option {
+    flex: 1 1 250px;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.donation-option h2 {
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.donation-option p {
+    color: #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.donation-link {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #ffd700;
+    color: #1e1e1e;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.donation-link:hover {
+    background-color: #ffea00;
+}
+
+.crypto-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.crypto-list li {
+    margin-bottom: 10px;
+    word-break: break-all;
+}
+
+.crypto-list span {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.donation-thanks {
+    text-align: center;
+    color: #e0e0e0;
+    margin-top: 30px;
+    font-style: italic;
+}

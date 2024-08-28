@@ -1,9 +1,9 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Donation from './components/donation';
-import Filler from './components/filler';
 import Future from './components/future';
+import OtherProjects from './components/OtherProjects';
 // Add new flag to all bosses called isMinigame and default to false
 const bosses = [
   {
@@ -437,101 +437,145 @@ const bosses = [
     osrswiki: 'https://oldschool.runescape.wiki/w/Corrupted_Hunllef'
   }
 ]
-
-
 const skills = [
   {
     name: 'Agility',
     isCombat: false,
+    isSkilling: true,
+    isF2p: false,
   },
   {
     name: 'Attack',
-    iCombat: true,
+    isCombat: true,
+    isSkilling: false,
+    isF2p: true,
   },
   {
     name: 'Strength',
     isCombat: true,
+    isSkilling: false,
+    isF2p: true,
   },
   {
     name: 'Defence',
     isCombat: true,
+    isSkilling: false,
+    isF2p: true,
   },
   {
     name: 'Ranged',
     isCombat: true,
+    isSkilling: false,
+    isF2p: true,
   },
   {
     name: 'Prayer',
     isCombat: false,
+    isSkilling: true,
+    isF2p: true,
   },
   {
     name: 'Magic',
-    isCombat: true
+    isCombat: true,
+    isSkilling: false,
+    isF2p: true,
   },
   {
     name: 'Runecraft',
     isCombat: false,
+    isSkilling: true,
+    isF2p: true,
   },
   {
     name: 'Hitpoints',
     isCombat: true,
+    isSkilling: false,
+    isF2p: true,
   },
   {
     name: 'Crafting',
     isCombat: false,
+    isSkilling: true,
+    isF2p: true,
   },
   {
     name: 'Mining',
     isCombat: false,
+    isSkilling: true,
+    isF2p: true,
   },
   {
     name: 'Smithing',
     isCombat: false,
+    isSkilling: true,
+    isF2p: true,
   },
   {
     name: 'Fishing',
     isCombat: false,
+    isSkilling: true,
+    isF2p: true,
   },
   {
     name: 'Cooking',
     isCombat: false,
+    isSkilling: true,
+    isF2p: true,
   },
   {
     name: 'Firemaking',
     isCombat: false,
+    isSkilling: true,
+    isF2p: true,
   },
   {
     name: 'Woodcutting',
     isCombat: false,
-  },
-  {
-    name: 'Herblore',
-    isCombat: false,
-  },
-  {
-    name: 'Thieving',
-    isCombat: false,
+    isSkilling: true,
+    isF2p: true,
   },
   {
     name: 'Fletching',
     isCombat: false,
+    isSkilling: true,
+    isF2p: false,
   },
   {
-    name: 'Slayer',
-    isCombat: true,
+    name: 'Herblore',
+    isCombat: false,
+    isSkilling: true,
+    isF2p: false,
+  },
+  {
+    name: 'Thieving',
+    isCombat: false,
+    isSkilling: true,
+    isF2p: false,
   },
   {
     name: 'Farming',
     isCombat: false,
+    isSkilling: true,
+    isF2p: false,
   },
   {
-    name: 'Construction',
-    isCombat: false,
+    name: 'Slayer',
+    isCombat: true,
+    isSkilling: false,
+    isF2p: false,
   },
   {
     name: 'Hunter',
     isCombat: false,
-  }
+    isSkilling: true,
+    isF2p: false,
+  },
+  {
+    name: 'Construction',
+    isCombat: false,
+    isSkilling: true,
+    isF2p: false,
+  },
 ];
 
 
@@ -563,23 +607,85 @@ function App() {
     return Math.floor(Math.random() * max);
   }
 
+  const [bossFilters, setBossFilters] = useState({
+    isGWD: false,
+    isWILDY: false,
+    isMulti: false,
+    isRaids: false,
+    isMinigame: false
+  });
+  const [skillFilters, setSkillFilters] = useState({
+    isCombat: false,
+    isF2p: false,
+    
+  });
+  const [filteredBosses, setFilteredBosses] = useState(bosses);
+  const [filteredSkills, setFilteredSkills] = useState(skills);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const newFilteredBosses = bosses.filter(boss => {
+      return Object.keys(bossFilters).every(key => {
+        return !bossFilters[key] || boss[key];
+      });
+    });
+    setFilteredBosses(newFilteredBosses);
+  }, [bossFilters]);
+
+  useEffect(() => {
+    const newFilteredSkills = skills.filter(skill => {
+      return !skillFilters.isCombat || skill.isCombat;
+    });
+    setFilteredSkills(newFilteredSkills);
+  }, [skillFilters]);
+
+  const handleBossFilterChange = (filterName) => {
+    setBossFilters(prevFilters => ({
+      ...prevFilters,
+      [filterName]: !prevFilters[filterName]
+    }));
+  };
+
+  const handleSkillFilterChange = (filterName) => {
+    setSkillFilters(prevFilters => ({
+      ...prevFilters,
+      [filterName]: !prevFilters[filterName]
+    }));
+  };
 
   const SelectRandomBoss = () => {
+    if (filteredBosses.length === 0) {
+      setError("No bosses match the selected filters. Please adjust your filters and try again.");
+      setBossesSelected(false);
+      return;
+    }
+
+    setError(null);
     setBossesSelected(true);
-    const randomNum = getRandomNumber(bosses.length);
-    setBossName(bosses[randomNum].name);
-    setBossIsGWD(bosses[randomNum].isGWD);
-    setBossIsWildy(bosses[randomNum].isWILDY);
-    setBossIsMulti(bosses[randomNum].isMulti);
-    setBossIsRaids(bosses[randomNum].isRaids);
-    setBossYoutube(bosses[randomNum].youtube);
-    setBossWiki(bosses[randomNum].osrswiki);
+    setSkillSelected(false);
+    const randomNum = getRandomNumber(filteredBosses.length);
+    const selectedBoss = filteredBosses[randomNum];
+    setBossName(selectedBoss.name);
+    setBossIsGWD(selectedBoss.isGWD);
+    setBossIsWildy(selectedBoss.isWILDY);
+    setBossIsMulti(selectedBoss.isMulti);
+    setBossIsRaids(selectedBoss.isRaids);
+    setBossYoutube(selectedBoss.youtube);
+    setBossWiki(selectedBoss.osrswiki);
   }
 
   const SelectRandomSkill = () => {
+    if (filteredSkills.length === 0) {
+      setError("No skills match the selected filters. Please adjust your filters and try again.");
+      setSkillSelected(false);
+      return;
+    }
+
+    setError(null);
     setSkillSelected(true);
-    const randomNum = getRandomNumber(skills.length);
-    setSkillName(skills[randomNum].name);
+    setBossesSelected(false);
+    const randomNum = getRandomNumber(filteredSkills.length);
+    setSkillName(filteredSkills[randomNum].name);
   }
 
   const SelectDonation = () => {
@@ -594,134 +700,194 @@ function App() {
     setOtherProjectsSelected(true);
   }
 
-
   const ClearAllSelections = () => {
     setBossesSelected(false);
     setSkillSelected(false);
+    setFutureSelected(false);
     setOtherProjectsSelected(false);
+    setDonationSelected(false);
   }
+
   const ClearBossSelection = () => {
     setBossesSelected(false);
   }
+
   const ClearSkillSelection = () => {
     setSkillSelected(false);
   }
+  
   const ClearDonationFuture = () => {
     setDonationSelected(false);
     setFutureSelected(false);
     setOtherProjectsSelected(false);
   }
 
+  // Simplified selection functions
+  const selectContent = (contentType) => {
+    ClearAllSelections();
+    switch(contentType) {
+      case 'boss':
+        SelectRandomBoss();
+        break;
+      case 'skill':
+        SelectRandomSkill();
+        break;
+      case 'future':
+        setFutureSelected(true);
+        break;
+      case 'otherProjects':
+        setOtherProjectsSelected(true);
+        break;
+      case 'donation':
+        setDonationSelected(true);
+        break;
+    }
+  }
+
+  const getBossAttributes = (boss) => {
+    const attributes = [
+      { name: 'Wilderness', value: boss.isWILDY },
+      { name: 'God Wars Dungeon', value: boss.isGWD },
+      { name: 'Multi-combat', value: boss.isMulti },
+      { name: 'Raid', value: boss.isRaids },
+      { name: 'Minigame', value: boss.isMinigame },
+    ];
+
+    return attributes.filter(attr => attr.value).map(attr => attr.name);
+  }
+
   return (
-      <div className="App">
-        <header className="App-header">
-          <div className="ui vertical segment">
-            <button className="ui secondary button" onClick={SelectRandomBoss}>Pick your random boss</button>
-            {bossesSelected ? <button className="ui secondary button" onClick={ClearBossSelection}>Clear</button> : ''  }
-            {bossesSelected ?
-            <div className="ui piled segments"> 
-                <div className="ui inverted segment">
-                    <h2>{bossName} </h2>
-                </div>         
-                <div className="ui inverted segment">
-                    { bossIsWildy ? ` is in the wildy.` : ` is not in the wildy.`}
-                </div>
-                <div className="ui inverted segment">
-                    { bossIsGWD ? ` is in the God Wars Dungeon.` : ` is not in the God Wars Dungeon.`}
-                </div>
-                <div className="ui inverted segment">
-                    { bossIsMulti ? ` is in Multi.` : ` is not Multi.`}
-                </div>
-                <div className="ui inverted segment">
-                    { bossIsRaids ? ` is a Raid.` : ` is not a Raid.`}
-                </div>
-                <div className="ui inverted segment">
-                  <a href={bossWiki}>OSRS Wiki Strategy</a>
-                </div>
-                <div className="ui inverted segment">
-                  <a href={bossYoutube}>A youtube video of a guide</a>
-                </div>
-            </div> : ''
-            }
+    <div className="App">
+      <header className="App-header">
+        <div className="button-container">
+          <div className="main-buttons">
+            <button className="ui button main-button" onClick={() => selectContent('boss')}>Pick your random boss</button>
+            <button className="ui button main-button" onClick={() => selectContent('skill')}>Pick your random skill</button>
           </div>
-          <div className="ui vertical segment">
-            <button className="ui secondary button" onClick={SelectRandomSkill}>Pick your random skill</button>
-            {skillSelected ? <button className="ui secondary button" onClick={ClearSkillSelection}>Clear</button> : ''}
-            {skillSelected ?
-              <div className="ui piled segments"> 
-                <div className="ui inverted segment">
-                  <h2>{skillName}</h2>
+          <div className="secondary-buttons">
+            <button className="ui button" onClick={() => selectContent('future')}>This site's future</button>
+            <button className="ui button" onClick={() => selectContent('otherProjects')}>Other OSRS Projects</button>
+            <button className="ui button" onClick={ClearAllSelections}>Clear All</button>
+          </div>
+        </div>
+
+        {bossesSelected && (
+          <div className="filter-container">
+            <h3>Boss Filters:</h3>
+            <div className="filter-buttons">
+              <button 
+                className={`ui toggle button ${bossFilters.isGWD ? 'active' : ''}`} 
+                onClick={() => handleBossFilterChange('isGWD')}
+              >
+                God Wars Dungeon
+              </button>
+              <button 
+                className={`ui toggle button ${bossFilters.isWILDY ? 'active' : ''}`} 
+                onClick={() => handleBossFilterChange('isWILDY')}
+              >
+                Wilderness
+              </button>
+              <button 
+                className={`ui toggle button ${bossFilters.isMulti ? 'active' : ''}`} 
+                onClick={() => handleBossFilterChange('isMulti')}
+              >
+                Multi-combat
+              </button>
+              <button 
+                className={`ui toggle button ${bossFilters.isRaids ? 'active' : ''}`} 
+                onClick={() => handleBossFilterChange('isRaids')}
+              >
+                Raids
+              </button>
+              <button 
+                className={`ui toggle button ${bossFilters.isMinigame ? 'active' : ''}`} 
+                onClick={() => handleBossFilterChange('isMinigame')}
+              >
+                Minigame
+              </button>
+            </div>
+            {error && <p className="error-message">{error}</p>}
+            <p>Matching bosses: {filteredBosses.length}</p>
+          </div>
+        )}
+
+        {skillSelected && (
+          <div className="filter-container">
+            <h3>Skill Filters:</h3>
+            <div className="filter-buttons">
+              <button 
+                className={`ui toggle button ${skillFilters.isCombat ? 'active' : ''}`} 
+                onClick={() => handleSkillFilterChange('isCombat')}
+              >
+                Combat Skills
+              </button>
+              <button 
+                className={`ui toggle button ${skillFilters.isF2p ? 'active' : ''}`} 
+                onClick={() => handleSkillFilterChange('isF2p')}
+              >
+                F2P Skills
+              </button>
+            </div>
+            {error && <p className="error-message">{error}</p>}
+            <p>Matching skills: {filteredSkills.length}</p>
+          </div>
+        )}
+
+        <div className="content-container">
+          {bossesSelected && (
+            <div className="ui piled segments">
+              <div className="ui inverted segment">
+                <h2>{bossName}</h2>
+              </div>
+              <div className="ui inverted segment">
+                <p>Attributes:</p>
+                <div className="boss-attributes">
+                  {getBossAttributes(bosses.find(b => b.name === bossName)).map((attr, index) => (
+                    <span key={index} className="boss-attribute">{attr}</span>
+                  ))}
                 </div>
               </div>
-              : ''
-            }                    
-            <Filler />
-            <Filler />
-            <Filler />
-            <Filler />
-            <Filler />
-          </div>
-          <div className="ui vertical segment">
-             {bossesSelected || skillSelected ?<button className="ui secondary button" onClick={ClearAllSelections}>Clear All</button>: '' }
-          </div>        
-
-          <div className="ui vertical segment">
-              {!futureSelected ? <button className="ui secondary button" onClick={SelectFuture}>This site's future</button> : ''}
-              {futureSelected ?
-                <div className="ui piled segments"> 
-                  <div className="ui inverted segment">
-                  <Future />
-                  <Filler />
-                  <Filler />
-                    {donationSelected ? <Donation />: ''}
-                    {!donationSelected ? <button className="ui secondary button" onClick={SelectDonation}>Support the site</button> : ''}
-                    
-                  </div>
-                </div>
-                : ''
-              }
+              <div className="ui inverted segment">
+                <a href={bossWiki} target="_blank" rel="noopener noreferrer">OSRS Wiki Strategy</a>
+              </div>
+              <div className="ui inverted segment">
+                <a href={bossYoutube} target="_blank" rel="noopener noreferrer">YouTube Guide</a>
+              </div>
             </div>
+          )}
 
-            <div className="ui vertical segment">
-              {!otherProjectsSelected ? <button className="ui secondary button" onClick={SelectOtherProjects}>Other OSRS Projects</button> : ''}
-              {otherProjectsSelected ?
-                  <div className="ui piled segments"> 
-                    <div className="ui inverted segment">
-                      <h1>Other OSRS Projects</h1>
-                      <p>NOTE - I have no affiliation with any of these, but enjoy reading about them.</p>
-                      <a href="https://opensea.io/collection/osrs-punks">1. OSRS Punks</a>
-                      <p>I enjoy the crypto world, and NFT's are a big part of it. A content creator named 'Tedious' is behind OSRS Punks. (I don't own any YET!)</p>
-                      <a href="https://www.osrsbotdetector.com/#/">2. OSRS Bot-Detector</a>
-                      <p>Open source machine learning algorithm detecting and predicting players you pass. Does hell of a lot more bot busting then Yagex imo.</p>
-                      <a href="https://www.patreon.com/m/3596305/posts">3. LilSmokey</a>
-                      <p>Unreal video editing and OSRS meme creator. Smokey's collabed with content creators and have made some top class editing!</p>
-                    </div>
-                  </div>
-                  : ''
-                }
-                {donationSelected || futureSelected || otherProjectsSelected ? <button className="ui secondary button" onClick={ClearDonationFuture}>Clear</button> : ''}
+          {skillSelected && (
+            <div className="ui piled segments">
+              <div className="ui inverted segment">
+                <h2>{skillName}</h2>
+              </div>
             </div>
-          </header>
-      </div>
+          )}
+
+          {futureSelected && (
+            <div className="ui piled segments">
+              <div className="ui inverted segment">
+                <Future />
+                <button className="ui secondary button" onClick={() => selectContent('donation')}>Support the site</button>
+              </div>
+            </div>
+          )}
+
+          {otherProjectsSelected && (
+            <OtherProjects />
+          )}
+
+          {donationSelected && (
+            <div className="ui piled segments">
+              <div className="ui inverted segment">
+                <Donation />
+              </div>
+            </div>
+          )}
+        </div>
+      </header>
+    </div>
   );
 }
 
 export default App;
-
-/*
-
-              {!donationSelected ? <button className="ui secondary button" onClick={SelectDonation}>This Site's Future</button> : ''}
-              {donationSelected ?
-                <div className="ui piled segments"> 
-                  <div className="ui inverted segment">
-                    <Donation />
-                    {futureSelected ? <Future />: ''}
-                    {!futureSelected ? <button className="ui secondary button" onClick={SelectFuture}>Site's Future</button> : ''}
-                    {donationSelected || futureSelected ? <button className="ui secondary button" onClick={ClearDonationFuture}>Clear</button> : ''}
-                  </div>
-                </div>
-                : ''
-              }
-
-
-*/

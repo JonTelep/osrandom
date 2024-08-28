@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  color: yellow;
 }
 
 .App-logo {
@@ -12,24 +11,19 @@
 
 .App-header {
   background-color: #282c34;
- 
-  font-family: 'runescape_uf';
-  src :local('runescape_uf'), url(./fonts/runescape_uf.ttf) format('truetype');
-  font-size: 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
-  color: yellow;;
+  color: #ffd700;  /* Yellow text */
+  padding: 20px;
 }
 
 .ui.inverted.segment{
-  color: yellow;
-  font-family: 'runescape_uf';
-  src :local('runescape_uf'), url(./fonts/runescape_uf.ttf) format('truetype');
-  font-size: 20px;
+  background-color: #282c34;
+  color: #ffd700;
 }
 
 .ui.secondary.button{
@@ -62,13 +56,14 @@ h2{
 }
 
 a {
-  color: yellow;
+  color: #ffd700;
   font-family: 'runescape_uf';
   src :local('runescape_uf'), url(./fonts/runescape_uf.ttf) format('truetype');
   font-size: 30px;
+  text-decoration: underline;
 }
 a:hover {
-  color: pink;
+  color: #ffffff;
   font-family: 'runescape_uf';
   src :local('runescape_uf'), url(./fonts/runescape_uf.ttf) format('truetype');
   font-size: 30px;
@@ -87,4 +82,118 @@ a:hover {
   to {
     transform: rotate(360deg);
   }
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+}
+
+.main-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.secondary-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.ui.button {
+  margin: 0;
+  font-family: 'runescape_uf', sans-serif;
+  font-size: 16px;
+  background-color: #4a4a4a;
+  color: #ffd700;
+  border: 2px solid #ffd700;
+}
+
+.ui.button:hover {
+  background-color: #ffd700;
+  color: #282c34;
+}
+
+.ui.button.main-button {
+  font-size: 24px;
+  padding: 15px 30px;
+  flex: 1;
+  max-width: 300px;
+  background-color: #ffd700;
+  color: #282c34;
+  border: 3px solid #282c34;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.ui.button.main-button:hover {
+  background-color: #282c34;
+  color: #ffd700;
+  border-color: #ffd700;
+}
+
+.content-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ui.piled.segments, .ui.piled.segment {
+  background-color: #282c34;
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.boss-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.boss-attribute {
+  background-color: #ffd700;
+  color: #282c34;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filter-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ui.toggle.button {
+  background-color: #4a4a4a;
+  color: #ffd700;
+  border: 2px solid #ffd700;
+}
+
+.ui.toggle.button.active {
+  background-color: #ffd700;
+  color: #282c34;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-weight: bold;
+  margin-top: 10px;
 }
