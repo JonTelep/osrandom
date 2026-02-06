@@ -1,0 +1,89 @@
+.username-input-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.username-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.username-input {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+  background-color: #4a4a4a;
+  color: #ffd700;
+  font-family: 'runescape_uf', sans-serif;
+  width: 200px;
+}
+
+.username-input::placeholder {
+  color: #888;
+}
+
+.username-input:focus {
+  outline: none;
+  border-color: #fff;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.gamemode-select {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+  background-color: #4a4a4a;
+  color: #ffd700;
+  font-family: 'runescape_uf', sans-serif;
+  cursor: pointer;
+}
+
+.gamemode-select:focus {
+  outline: none;
+  border-color: #fff;
+}
+
+.lookup-button {
+  background-color: #ffd700 !important;
+  color: #282c34 !important;
+  font-weight: bold;
+}
+
+.lookup-button:hover:not(:disabled) {
+  background-color: #fff !important;
+}
+
+.lookup-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.clear-button {
+  background-color: #666 !important;
+  color: #fff !important;
+}
+
+.clear-button:hover:not(:disabled) {
+  background-color: #888 !important;
+}
+
+.username-error {
+  color: #ff6b6b;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.username-welcome {
+  color: #ffd700;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.username-welcome strong {
+  color: #fff;
+}

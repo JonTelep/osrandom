@@ -15,9 +15,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: #ffd700;  /* Yellow text */
+  color: #ffd700;
   padding: 20px;
 }
 
@@ -196,4 +196,69 @@ a:hover {
   color: #ff6b6b;
   font-weight: bold;
   margin-top: 10px;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+.loading-container h2 {
+  margin-bottom: 10px;
+}
+
+.loading-container p {
+  color: #aaa;
+  font-size: 16px;
+}
+
+/* Player stats display */
+.player-stats {
+  text-align: center;
+}
+
+.stats-label {
+  color: #aaa;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.stats-value {
+  color: #ffd700;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'runescape_uf', sans-serif;
+}
+
+/* Support button */
+.support-button {
+  background-color: #28a745 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.support-button:hover {
+  background-color: #218838 !important;
+  color: #fff !important;
+}
+
+/* Footer */
+.app-footer {
+  margin-top: auto;
+  padding: 20px;
+  color: #888;
+  font-size: 14px;
+}
+
+.app-footer a {
+  color: #ffd700;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  color: #fff;
 }
