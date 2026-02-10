@@ -2,6 +2,9 @@
   "name": "rsrandom",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "dependencies": {
     "@chakra-ui/react": "^1.6.2",
     "@emotion/react": "^11.4.0",
