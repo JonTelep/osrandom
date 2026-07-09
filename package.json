@@ -26,6 +26,10 @@
     "server": "cd server && npm start",
     "dev": "concurrently \"npm start\" \"npm run server\""
   },
+  "overrides": {
+    "ws@>=8.0.0 <8.21.0": "^8.21.0",
+    "ws@>=7.0.0 <7.5.11": "^7.5.11"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
